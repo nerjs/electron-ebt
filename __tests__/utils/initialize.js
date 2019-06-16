@@ -19,20 +19,21 @@ module.exports = () => {
         checkInit({}, {}, undefined, `data[${{}}], missing property[send]`)
         checkInit({send:true}, {}, undefined, `data[${{}}], missing property[on]`)
         checkInit({send:true}, {on:true}, undefined, `data[${{}}], missing property[once]`)
-        checkInit({send:true}, {on:true, once: true}, undefined, `data[${{}}], missing property[removeAllListeners]`)
-        checkInit({send:true}, {on:true, once: true, removeAllListeners:true}, undefined, `data[undefined] has invalid type`)
-        checkInit({send:true}, {on:true, once: true, removeAllListeners:true}, 1, `data[1] does not match the type[string]`)
+        checkInit({send:true}, {on:true, once: true}, undefined, `data[${{}}], missing property[removeListener]`)
+        checkInit({send:true}, {on:true, once: true, removeListener:true}, undefined, `data[undefined] has invalid type`)
+        checkInit({send:true}, {on:true, once: true, removeListener:true}, 1, `data[1] does not match the type[string]`)
     })
 
     test('correct initialization', async () => {
         const ebt = new EBT();
-        let sender, listener, name = 'test';
+        let sender, listener, 
+            name = 'test';
         if (ir) {
             sender = ipcRenderer;
             listener = ipcRenderer;
         } else {
             const win = await openWin(path.join(__dirname, 'tr_script.js'))
-            listener = ipcMain
+            listener = win.webContents
             sender = win.webContents
         }
 
@@ -41,5 +42,13 @@ module.exports = () => {
         expect(ebt.ipcSender).toEqual(sender)
         expect(ebt.ipcListener).toEqual(listener)
         expect(ebt.eventName).toEqual(name)
+
+        ebt.reinitialize()
+        expect(ebt.ipcSender).toEqual(null)
+        expect(ebt.ipcListener).toEqual(null)
+        expect(ebt.eventName).toEqual(null)
+
+
+
     })
 }

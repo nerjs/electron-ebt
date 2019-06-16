@@ -7,8 +7,8 @@ const ebt = require('../lib/ebt')
 const mainTemplate = path.join(__dirname, 'main.html')
 const mainIcon = path.join(__dirname, 'assets', 'main.png')
 
-console.log(ebt);
-(new ebt()).initialize({send:1},ipcMain, '1')
+// console.log(ebt);
+// (new ebt()).initialize({send:1},ipcMain, '1')
 
 const devTools = _win => {
 
