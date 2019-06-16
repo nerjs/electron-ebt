@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test view</title>
+</head>
+<body>
+    <script>
+        const { ipcRenderer, remote: { getCurrentWindow} } = require('electron')
+        const { EVENT_TO_LOAD_SCRIPT } = require('../utils/open_win')
+        const ev = `${EVENT_TO_LOAD_SCRIPT}:${getCurrentWindow().id}`
+        
+        ipcRenderer.once(ev, (e, d) => {
+            const div = document.createElement('div')
+            div.style.fontSize = '24px'
+            div.innerText = d;
+            document.body.append(div)
+
+
+
+            const script = document.createElement('script')
+            script.src = d 
+
+            script.onerror = e => {
+                ipcRenderer.send(ev, false)
+            }
+
+            script.onload = () => {
+                ipcRenderer.send(ev, true)
+            }
+
+            document.body.append(script)
+        })
+
+    </script>
+</body>
+</html>
