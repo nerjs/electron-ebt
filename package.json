@@ -1,6 +1,6 @@
 {
   "name": "electron-ebt",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Communication between two ipc clients with confirmation in electronjs",
   "main": "index.js",
   "scripts": {
