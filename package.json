@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "demo": "electron ./demo/main"
+    "demo": "electron ./demo/main",
+    "precommit": "npm test"
   },
   "repository": {
     "type": "git",
