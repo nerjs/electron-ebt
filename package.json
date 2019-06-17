@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "demo": "electron ./demo/main",
-    "precommit": "npm test"
+    "demo": "electron ./demo/main"
   },
   "repository": {
     "type": "git",
@@ -19,6 +18,12 @@
   ],
   "author": "nerjs",
   "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
+  },
   "bugs": {
     "url": "https://github.com/nerjs/electron-ebt/issues"
   },
@@ -26,6 +31,7 @@
   "devDependencies": {
     "@jest-runner/electron": "^2.0.1",
     "electron": "^5.0.4",
+    "husky": "^2.4.1",
     "jest": "^24.8.0"
   },
   "dependencies": {
