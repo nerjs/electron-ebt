@@ -20,11 +20,14 @@ module.exports = () => {
             error: null,
             prevented: false 
         })
+
+        expect(event.initiator).toEqual(false)
     })
 
     test('Insert data', () => {
-        const event = new EBTEvent('test data')
+        const event = new EBTEvent(true, 'test data')
         expect(event.data).toEqual('test data')
+        expect(event.initiator).toEqual(true)
     })
 
     test('preventDefault', () => {
