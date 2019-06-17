@@ -1,6 +1,6 @@
 {
   "name": "electron-ebt",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Communication between two ipc clients with confirmation in electronjs",
   "main": "index.js",
   "scripts": {
@@ -18,12 +18,6 @@
   ],
   "author": "nerjs",
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm test",
-      "pre-push": "npm test"
-    }
-  },
   "bugs": {
     "url": "https://github.com/nerjs/electron-ebt/issues"
   },
@@ -31,7 +25,6 @@
   "devDependencies": {
     "@jest-runner/electron": "^2.0.1",
     "electron": "^5.0.4",
-    "husky": "^2.4.1",
     "jest": "^24.8.0"
   },
   "dependencies": {
