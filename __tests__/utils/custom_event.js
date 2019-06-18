@@ -169,4 +169,75 @@ module.exports = () => {
         })
 
     })
+
+    test('function -> promise', async () => {
+        let event, err;
+
+
+        event = new EBTEvent()
+        err = new Error('test error 1')
+
+        event.setResult(() => ({ a: 1 }))
+        expect(event.getResult()).toEqual({
+            result: {
+                a: 1
+            },
+            error: null,
+            prevented: false 
+        })
+
+        event = new EBTEvent()
+        err = new Error('test error 2')
+
+        event.setResult(() => err)
+        expect(event.getResult()).toEqual({
+            result: {},
+            error: err,
+            prevented: false 
+        })
+
+
+        event = new EBTEvent()
+        err = new Error('test error 3')
+
+        event.setResult(() => {
+            throw err
+        })
+        expect(event.getResult()).toEqual({
+            result: {},
+            error: err,
+            prevented: false 
+        })
+
+
+        event = new EBTEvent()
+        err = new Error('test error 4')
+
+        event.setResult(sleep(10))
+        expect(event.isPromise()).toEqual(true)
+
+        event = new EBTEvent()
+        err = new Error('test error 5')
+
+        event.setResult(async () => {
+            await sleep(20)
+            event.setResult({a: 2})
+        })
+        expect(event.getResult()).toEqual({
+            result: {},
+            error: null,
+            prevented: false 
+        })
+
+        await event.getPromises()
+
+        expect(event.getResult()).toEqual({
+            result: {
+                a: 2
+            },
+            error: null,
+            prevented: false 
+        })
+
+    })
 }

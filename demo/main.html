@@ -11,6 +11,9 @@
     <script>
         const Ebt = require('../lib/ebt')  
         const electron = require('electron')  
+        const openWin = require('../__tests__/utils/open_win')
+        const sleep = require('../lib/utils/sleep')
+        openWin('javascript:alert(1)').then(w => {window.win = w})
     </script>
 </body>
 </html>
