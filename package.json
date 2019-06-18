@@ -1,8 +1,8 @@
 {
   "name": "electron-ebt",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Communication between two ipc clients with confirmation in electronjs",
-  "main": "index.js",
+  "main": "./lib/ebt.js",
   "scripts": {
     "test": "jest",
     "demo": "electron ./demo/main"
@@ -14,6 +14,7 @@
   "keywords": [
     "electron",
     "events",
+    "EventEmitter",
     "confirmation"
   ],
   "author": "nerjs",
