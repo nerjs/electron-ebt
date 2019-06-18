@@ -33,6 +33,7 @@
 
             document.body.append(script)
         })
+        ipcRenderer.send(`ready-to-show:${getCurrentWindow().id}`)
 
     </script>
 </body>

@@ -1,5 +1,5 @@
 const ir = require('is-electron-renderer')
-const { ipcMain, ipcRenderer } = require('electron')
+const { ipcRenderer } = require('electron')
 const path = require('path')
 
 const openWin = require('../utils/open_win')
