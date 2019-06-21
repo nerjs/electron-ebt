@@ -71,6 +71,7 @@ Alternative initialization:
 ebt.initialize('test_win')
 ```
 **init data (first argument):**
+
 |name|type|desription|default|
 |:--|:--:|:--|:--:|
 |name|String|It is with this name that all messages will be sent.|*null*|
@@ -78,7 +79,9 @@ ebt.initialize('test_win')
 |listener|Object|Receiving messages will be through this object| **ipcRenderer** for renderer process. **ipcMain** for renderer process|
 
 <a name="init_params"></a>
+
 **Params:**
+
 |name|type|desription|default|
 |:--|:--:|:--|:--:|
 |confirmTimeout|Number|Waiting for a response if failure is not a Promise. At the expiration of the specified time, an exception will be thrown|2000| 
@@ -157,7 +160,7 @@ console.log(res) // { b: 2 }
 
 All handlers receive the first argument an instance of this object.
 
-####methods and properties
+#### methods and properties
 
 |name|type|desription|params|returns|
 |:--:|:--:|:--|:--:|:--:|
@@ -169,6 +172,7 @@ All handlers receive the first argument an instance of this object.
 | getResult | Function | Result Already Installed | | [Object](#EBTEventprototypegetResult) | 
 | setResult | Function | Setting result | [Object](#EBTEventprototypesetResult) | | 
 | getPromises | Function | Returns a Promise that will end when the previously installed Promises are completed. | | Promise |
+
 
 #### EBTEvent.prototype.getResult() 
 ```js
