@@ -1,8 +1,7 @@
 const path = require('path')
-const isRenderer = require('is-electron-renderer')
-const { ipcMain, remote } = require('electron')
+const ipcMain = require('nerjs-utils/electron/ipc_main')
+const openWinScript = require('nerjs-utils/electron/tests/open_win_script')
 
-const openWin = require('../utils/open_win')
 const EBT = require('../../lib/ebt')
 
 const script = path.join(__dirname, 'sender_script.js')
@@ -11,10 +10,10 @@ module.exports = () => {
     let win, ebt, init;
 
     beforeAll(async () => {
-        win = await openWin(script)
+        win = await openWinScript(script)
         const name = `test:${win.id}`,
             sender = win.webContents,
-            listener = isRenderer ? remote.ipcMain : ipcMain;
+            listener = ipcMain;
         
         ebt = new EBT()
         init = { name, sender, listener }

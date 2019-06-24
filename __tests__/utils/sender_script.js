@@ -1,9 +1,8 @@
 const { ipcRenderer, remote: { getCurrentWindow }} =  require('electron')
-const sleep = require('../utils/sleep')
+const sleep = require('nerjs-utils/core/sleep')
 
 
 const EBT = require('../../lib/ebt')
-
 
 
 const ebt = new EBT()
@@ -13,8 +12,6 @@ ebt.initialize({
     sender: ipcRenderer, 
     listener: ipcRenderer
 })
-
-
 
 
 ebt.on('test1', e => e.setResult({a:1}))

@@ -1,20 +1,20 @@
 const ir = require('is-electron-renderer')
 const { ipcRenderer } = require('electron')
+const ipcMain = require('nerjs-utils/electron/ipc_main')
 const path = require('path')
+const openWinScript = require('nerjs-utils/electron/tests/open_win_script')
 
-const openWin = require('../utils/open_win')
 const EBT = require('../../lib/ebt')
-
-
-const checkInit = (sender, listener, name, msg) => {
-    const ebt = new EBT();
-    expect(() => {
-        ebt.initialize({sender, listener, name})
-    }).toThrow(msg)
-}
 
 module.exports = () => {
     test('check initialize', () => {
+
+        const checkInit = (sender, listener, name, msg) => {
+            const ebt = new EBT();
+            expect(() => {
+                ebt.initialize({sender, listener, name})
+            }).toThrow(msg)
+        }
         checkInit(undefined, undefined, undefined, 'data[undefined] has invalid type')
         checkInit({}, {}, undefined, `data[${{}}], missing property[send]`)
         checkInit({send:true}, {}, undefined, `data[${{}}], missing property[on]`)
@@ -27,13 +27,19 @@ module.exports = () => {
     test('correct initialization', async () => {
         const ebt = new EBT();
         let sender, listener, 
-            name = 'test';
+            name = 'test', 
+            win;
         if (ir) {
             sender = ipcRenderer;
             listener = ipcRenderer;
         } else {
-            const win = await openWin(path.join(__dirname, 'tr_script.js'))
-            listener = win.webContents
+            try {
+               win = await openWinScript(path.join(__dirname, 'tr_script.js')) 
+            } catch(e) {
+                console.log(e)
+            }
+            
+            listener = ipcMain
             sender = win.webContents
         }
 
@@ -49,6 +55,6 @@ module.exports = () => {
         expect(ebt.eventName).toEqual(null)
 
 
-
+        if (win) win.destroy()
     })
 }

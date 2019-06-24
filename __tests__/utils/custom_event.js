@@ -1,5 +1,5 @@
 const EBTEvent = require('../../lib/utils/event_message')
-const sleep = require('./sleep')
+const sleep = require('nerjs-utils/core/sleep')
 
 module.exports = () => {
 

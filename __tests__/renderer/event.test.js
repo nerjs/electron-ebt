@@ -1,5 +1,5 @@
 const ce = require('../utils/custom_event')
-const EBTCustomEvent = require('../../lib/utils/custom_event')
+const EBTCustomEvent = require('nerjs-utils/electron/custom_event')
 
 describe('Custom events', () => {
 
