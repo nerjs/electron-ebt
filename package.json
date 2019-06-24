@@ -25,12 +25,12 @@
   "homepage": "https://github.com/nerjs/electron-ebt#readme",
   "devDependencies": {
     "@jest-runner/electron": "^2.0.1",
-    "electron": "^5.0.4",
+    "electron": "^5.0.5",
     "jest": "^24.8.0"
   },
   "dependencies": {
     "is-electron-renderer": "^2.0.1",
     "merge": "^1.2.1",
-    "nerjs-utils": "^0.1.1"
+    "nerjs-utils": "^0.1.2"
   }
 }
