@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "is-electron-renderer": "^2.0.1",
-    "merge": "^1.2.1",
+    "merge": "^2.1.0",
     "nerjs-utils": "^0.1.2"
   }
 }
