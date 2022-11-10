@@ -25,7 +25,7 @@
   "homepage": "https://github.com/nerjs/electron-ebt#readme",
   "devDependencies": {
     "@jest-runner/electron": "^2.0.1",
-    "electron": "^5.0.5",
+    "electron": "^18.3.7",
     "jest": "^24.8.0"
   },
   "dependencies": {
